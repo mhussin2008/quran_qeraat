@@ -87,11 +87,11 @@ flutter:
       fonts:
         - asset: assets/fonts/me_quran.ttf
     - family: qaloon
-        fonts:
-            - asset: assets/fonts/qaloon.otf
+      fonts:
+        - asset: assets/fonts/qaloon.otf
     - family: warsh
-        fonts:
-            - asset: assets/fonts/warsh.ttf
+      fonts:
+        - asset: assets/fonts/warsh.ttf
 
   # fonts:
   #   - family: Schyler
