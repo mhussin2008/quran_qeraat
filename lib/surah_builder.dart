@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:quran_qeraat/faces_page.dart';
 import 'constant.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'faces_page.dart';
+import 'dart:developer' as dev;
 
 final ItemScrollController itemScrollController = ItemScrollController();
 final ItemPositionsListener itemPositionsListener =
@@ -111,51 +114,23 @@ class _SurahBuilderState extends State<SurahBuilder> {
                           color: index % 2 != 0
                               ? const Color.fromARGB(255, 253, 251, 240)
                               : const Color.fromARGB(255, 253, 247, 230),
-                          child: PopupMenuButton(
+                          child: GestureDetector(
+                            onTap: (){
+
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => facesPage()
+                                  )
+                              );
+
+
+                              dev.log('pressed');
+                            },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: verseBuilder(index, previousVerses),
                             ),
-                            itemBuilder: (context) => [
-                              PopupMenuItem(
-                                onTap: () {
-                                  saveBookMark(widget.surah + 1, index);
-                                },
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.bookmark_add,
-                                      color: Color.fromARGB(255, 56, 115, 59),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      "حفظ الأية",
-                                      textDirection: TextDirection.rtl,
-                                    )
-                                  ],
-                                ),
-                              ),
-                              PopupMenuItem(
-                                onTap: () {},
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.share,
-                                      color: Color.fromARGB(255, 56, 115, 59),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      "مشاركه",
-                                      textDirection: TextDirection.rtl,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
                           ),
                         ),
                       ],
@@ -207,6 +182,7 @@ class _SurahBuilderState extends State<SurahBuilder> {
       theme: ThemeData(primarySwatch: Colors.yellow),
       home: Scaffold(
         appBar: AppBar(
+          // swap mushaf mode
           leading: Tooltip(
             message: 'Mushaf Mode',
             child: TextButton(
@@ -245,7 +221,7 @@ class _SurahBuilderState extends State<SurahBuilder> {
     );
   }
 }
-
+// basmalah
 class ReturnBasmalah extends StatelessWidget {
   const ReturnBasmalah({Key? key}) : super(key: key);
 

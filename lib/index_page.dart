@@ -35,7 +35,9 @@ class _IndexPageState extends State<IndexPage> {
                       surahName: arabicName[bookMarkedSurah - 1]['name'],
                       ayah: bookMarkedAyah,
 
-                    )));
+                    )
+                )
+            );
           }
         },
       ),
@@ -81,7 +83,7 @@ class _IndexPageState extends State<IndexPage> {
       ),
     );
   }
-
+// فهرس
   Container indexCreator(quran, context) {
     return Container(
       color: const Color.fromARGB(255, 221, 250, 236),
