@@ -3,8 +3,12 @@ import 'package:quran_qeraat/main.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'dart:developer' as dev;
 
+import 'constant.dart';
+
 class facesPage extends StatefulWidget {
-  const facesPage({Key? key}) : super(key: key);
+  final surah;
+  final aya;
+  const facesPage({Key? key, this.surah, this.aya}) : super(key: key);
 
   @override
   State<facesPage> createState() => _facesPageState();
@@ -13,7 +17,14 @@ class facesPage extends StatefulWidget {
 class _facesPageState extends State<facesPage> {
   @override
   Widget build(BuildContext context) {
+    var t='أوجه الآية'+'  ' + widget.aya.toString()+'  '+'من سورة '+ arabicName[widget.surah]['name'];
     return Scaffold(
+      appBar: AppBar(
+
+        title: Center(child: Text(t)),
+        leading: IconButton(onPressed: (){
+        Navigator.pop(context);
+      },icon: Icon(Icons.arrow_back_rounded),),),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Center(
@@ -32,10 +43,9 @@ class _facesPageState extends State<facesPage> {
                               child: GestureDetector(
                                 onTap: () {
                                   dev.log(e['face'].toString());
+
                                   AssetsAudioPlayer.newPlayer().open(
-                                    Audio("assets/audio/1-6-" +
-                                        e['face'].toString() +
-                                        ".mp3"),
+                                    Audio(getFaceAsset(widget.surah, widget.aya, e['face'])),
                                     autoStart: true,
                                     showNotification: false,
                                   );
@@ -96,4 +106,13 @@ class _facesPageState extends State<facesPage> {
           ),
     ));
   }
+
+String getFaceAsset(int surah,int aya,int face){
+    print(surah.toString()+'   '+aya.toString());
+
+    return "assets/audio/" + (surah+1).toString() + "-" + aya.toString() + "-"+
+        face.toString() +
+        ".mp3";
+}
+
 }

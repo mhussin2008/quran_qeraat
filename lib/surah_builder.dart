@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quran_qeraat/faces_page.dart';
 import 'constant.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -115,18 +116,21 @@ class _SurahBuilderState extends State<SurahBuilder> {
                               ? const Color.fromARGB(255, 253, 251, 240)
                               : const Color.fromARGB(255, 253, 247, 230),
                           child: GestureDetector(
-                            onTap: (){
-
+                            onTap: () async {
+                              var result= await isAssetExits(
+                                  widget.surah+1,index+1);
+                              print(result.toString());
+                              if(result){
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => facesPage()
+                                      builder: (context) => facesPage(surah: widget.surah,aya:index+1 ,)
                                   )
                               );
 
 
-                              dev.log('pressed');
-                            },
+                              dev.log('surah '+(widget.surah+1).toString() +' aya '+(index+1).toString());
+                            }},
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: verseBuilder(index, previousVerses),
@@ -183,19 +187,28 @@ class _SurahBuilderState extends State<SurahBuilder> {
       home: Scaffold(
         appBar: AppBar(
           // swap mushaf mode
-          leading: Tooltip(
-            message: 'Mushaf Mode',
-            child: TextButton(
-              child: const Icon(
-                Icons.chrome_reader_mode,
-                color: Colors.white,
+          leadingWidth: 140,
+          leading: Row(
+            children: [
+              IconButton(onPressed: (){
+                Navigator.pop(context);
+              }, icon: Icon(Icons.arrow_back_rounded)),
+              SizedBox(width: 10,),
+              Tooltip(
+                message: 'Mushaf Mode',
+                child: TextButton(
+                  child: const Icon(
+                    Icons.chrome_reader_mode,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      view = !view;
+                    });
+                  },
+                ),
               ),
-              onPressed: () {
-                setState(() {
-                  view = !view;
-                });
-              },
-            ),
+            ],
           ),
           centerTitle: true,
           title: Text(
@@ -220,7 +233,25 @@ class _SurahBuilderState extends State<SurahBuilder> {
       ),
     );
   }
+
+  Future<bool> isAssetExits(int surah,int aya) async {
+    String path='';
+    path="assets/audio/" + surah.toString() + "-" + aya.toString() + "-"+
+        1.toString() +
+        ".mp3";
+    print(path);
+    try {
+       await rootBundle.load(path);
+       return true;
+    } catch(_) {
+      return false;
+    }
+  }
+
+
 }
+
+
 // basmalah
 class ReturnBasmalah extends StatelessWidget {
   const ReturnBasmalah({Key? key}) : super(key: key);
