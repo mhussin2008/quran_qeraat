@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home:   newIndexPage(),
+      home:   const IndexPage(),
     );
   }
 }

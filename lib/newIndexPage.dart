@@ -5,7 +5,7 @@ import 'package:quran_qeraat/main.dart';
 
 class newIndexPage extends StatelessWidget {
   newIndexPage({Key? key}) : super(key: key);
-  final line1="""إِنَّ اَ۬لذِينَ كَفَرُواْ سَوَآءٌ عَلَيْهِمْ ءَٰا۬نذَرْتَهُمْ أَمْ لَمْ تُنذِرْهُمْ """;
+  final line1="""إِنَّ اَ۬لذِينَ كَفَرُواْ سَوَآءٌ عَلَيْهِمْ ءَٰا۬نذَرْتَهُمْ أَمْ لَمْ تُنذِرْهُمْ """+'\n';
   final line2="""لَا يُؤْمِنُونَۖ ٥ خَتَمَ اَ۬للَّهُ عَلَيٰ قُلُوبِهِمْ وَعَلَيٰ سَمْعِهِمْۖ وَعَلَيٰ """;
   late  TextSpan span;
 
@@ -40,7 +40,10 @@ class newIndexPage extends StatelessWidget {
               color: Colors.grey,
               height: 200,
               width: 300,
-              child: RichText( text: span,
+              child: RichText(
+                textWidthBasis: TextWidthBasis.parent,
+                softWrap: true,
+                text: span,
               textDirection: TextDirection.rtl,
               textAlign: TextAlign.justify,)
             ),
