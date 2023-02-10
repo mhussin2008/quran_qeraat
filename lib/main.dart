@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'constant.dart';
 import 'index_page.dart';
 import 'dart:developer' as dev;
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 import 'newIndexPage.dart';
 

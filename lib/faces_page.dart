@@ -17,37 +17,40 @@ class facesPage extends StatefulWidget {
 class _facesPageState extends State<facesPage> {
   @override
   Widget build(BuildContext context) {
-    var t='أوجه الآية'+'  ' + widget.aya.toString()+'  '+'من سورة '+ arabicName[widget.surah]['name'];
+    var t='أوجه الآية  ${widget.aya}  من سورة '+ arabicName[widget.surah]['name'];
     return Scaffold(
       appBar: AppBar(
 
         title: Center(child: Text(t)),
         leading: IconButton(onPressed: (){
         Navigator.pop(context);
-      },icon: Icon(Icons.arrow_back_rounded),),),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Center(
-             child: Padding(
-               padding: const EdgeInsets.all(8.0),
-               child: Column(
-                    children: faces
-                      .map((e) => Column(
-                        children: [
+            },icon: const Icon(Icons.arrow_back_rounded),),),
+             body: SafeArea(
+                child: SingleChildScrollView(
+                  child: Center(
+                     child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                        children: faces.where((element) => element['surah']==widget.surah && element['aya']==widget.aya)
+                        .map((e) => Column(
+                          children: [
                           Container(
-                            padding: EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                   border:
                                       Border.all(color: Colors.teal, width: 5),
-                                  borderRadius: BorderRadius.all(Radius.circular(20))),
+                                  borderRadius: const BorderRadius.all(Radius.circular(20))),
                               child: GestureDetector(
                                 onTap: () {
-                                  dev.log(e['face'].toString());
-
+                                  print(faces[0]['surah']);
+                                  //dev.log(e['face'].toString());
+                                 // print(faces);
+                                  print(getFaceAsset(widget.surah, widget.aya, e['face']));
                                   AssetsAudioPlayer.newPlayer().open(
+
                                     Audio(getFaceAsset(widget.surah, widget.aya, e['face'])),
                                     autoStart: true,
-                                    showNotification: false,
+                                    showNotification: true,
                                   );
                                 },
                                 child: Column(
@@ -55,7 +58,7 @@ class _facesPageState extends State<facesPage> {
                                     Text(
                                       e['text'],
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blueAccent,
                                         fontFamily: 'qaloon',
@@ -65,21 +68,29 @@ class _facesPageState extends State<facesPage> {
                                     ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text(e['desc'],
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.red,
-                                                fontFamily: 'qaloon',
-                                                fontSize: 20)),SizedBox(width: 10,)
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: Text(e['desc'],
+
+                                              textAlign: TextAlign.center,
+                                              softWrap: true,
+                                              style: const TextStyle(
+
+                                                  color: Colors.red,
+                                                  fontFamily: 'qaloon',
+                                                  fontSize: 20)),
+                                        ), SizedBox(width: 10,)
                                       , Container(
                                           height: 40,
                                           width: 40,
                                           decoration: BoxDecoration(
                                             border: Border.all(color: Colors.teal, width: 5),
-                                            borderRadius: BorderRadius.all(Radius.circular(20))),
+                                            borderRadius: const BorderRadius.all(Radius.circular(20))),
                                           child: Text(e['face'].toString(),
-                                          style: TextStyle(fontSize: 22)
+                                          style: const TextStyle(fontSize: 22)
                                           ,textAlign: TextAlign.center,)
 
                               )],
@@ -93,7 +104,7 @@ class _facesPageState extends State<facesPage> {
                             [
                               Container(
                                   color: Colors.red,
-                                  child: SizedBox(
+                                  child: const SizedBox(
                                     height: 20,
                                   )
                               )
@@ -108,11 +119,9 @@ class _facesPageState extends State<facesPage> {
   }
 
 String getFaceAsset(int surah,int aya,int face){
-    print(surah.toString()+'   '+aya.toString());
+    //print(surah.toString()+'   '+aya.toString());
 
-    return "assets/audio/" + (surah+1).toString() + "-" + aya.toString() + "-"+
-        face.toString() +
-        ".mp3";
+    return "assets/audio/${surah+1}-$aya-$face.mp3";
 }
 
 }
