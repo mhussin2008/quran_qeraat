@@ -61,7 +61,7 @@ class _facesPageState extends State<facesPage> {
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blueAccent,
-                                        fontFamily: 'qaloon',
+                                        fontFamily: 'hafs2001',
                                         fontSize: 20,
                                       ),
                                       textDirection: TextDirection.rtl,
@@ -80,7 +80,7 @@ class _facesPageState extends State<facesPage> {
                                               style: const TextStyle(
 
                                                   color: Colors.red,
-                                                  fontFamily: 'qaloon',
+                                                  fontFamily: 'hafs2001',
                                                   fontSize: 20)),
                                         ), SizedBox(width: 10,)
                                       , Container(

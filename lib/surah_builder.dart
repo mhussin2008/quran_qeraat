@@ -236,14 +236,13 @@ class _SurahBuilderState extends State<SurahBuilder> {
 
   Future<bool> isAssetExits(int surah,int aya) async {
     String path='';
-    path="assets/audio/" + surah.toString() + "-" + aya.toString() + "-"+
-        1.toString() +
-        ".mp3";
+    path="assets/audio/$surah-$aya-${1}.mp3";
     print(path);
     try {
        await rootBundle.load(path);
        return true;
-    } catch(_) {
+    } catch(e) {
+      print(e.toString());
       return false;
     }
   }
