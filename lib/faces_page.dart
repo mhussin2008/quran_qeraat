@@ -56,13 +56,35 @@ class _facesPageState extends State<facesPage> {
                                 child: Column(
                                   children: [
                                     Text(
-                                      e['text'],
+                                      ////
+                                      // e['text'],
+                                       arabic.firstWhere((element) => element['sura_no']==widget.surah+1 && element['aya_no']==widget.aya)['aya_text']
+                                      //////
+                                  ,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blueAccent,
+                                        //fontFamily: 'hafs2001',
+                                        fontFamily: 'quran',
+                                        fontSize: 24,
+                                      ),
+                                      textDirection: TextDirection.rtl,
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Text(
+                                      ////
+                                       e['text']
+
+                                      //////
+                                      ,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.blueAccent,
+                                        //fontFamily: 'hafs2001',
                                         fontFamily: 'hafs2001',
-                                        fontSize: 20,
+                                        fontSize: 22,
                                       ),
                                       textDirection: TextDirection.rtl,
                                     ),
