@@ -89,7 +89,10 @@ flutter:
     - family: hafs2001
       fonts:
         - asset: assets/fonts/QCF2001.ttf
-    - family: me_quran.ttf
+    - family: hafs2002
+      fonts:
+        - asset: assets/fonts/QCF2002.ttf
+    - family: me_quran
       fonts:
         - asset: assets/fonts/me_quran.ttf
     - family: qaloon

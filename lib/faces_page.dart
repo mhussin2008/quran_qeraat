@@ -72,22 +72,22 @@ class _facesPageState extends State<facesPage> {
                                       textDirection: TextDirection.rtl,
                                     ),
                                     SizedBox(height: 5,),
-                                    Text(
-                                      ////
-                                       e['text']
-
-                                      //////
-                                      ,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.blueAccent,
-                                        //fontFamily: 'hafs2001',
-                                        fontFamily: 'hafs2001',
-                                        fontSize: 22,
-                                      ),
-                                      textDirection: TextDirection.rtl,
-                                    ),
+                                    // Text(
+                                    //   ////
+                                    //    e['text']
+                                    //
+                                    //   //////
+                                    //   ,
+                                    //   textAlign: TextAlign.center,
+                                    //   style: const TextStyle(
+                                    //     fontWeight: FontWeight.bold,
+                                    //     color: Colors.blueAccent,
+                                    //     //fontFamily: 'hafs2001',
+                                    //     fontFamily: 'hafs2002',
+                                    //     fontSize: 22,
+                                    //   ),
+                                    //   textDirection: TextDirection.rtl,
+                                    // ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       mainAxisSize: MainAxisSize.max,
@@ -99,12 +99,15 @@ class _facesPageState extends State<facesPage> {
 
                                               textAlign: TextAlign.center,
                                               softWrap: true,
+                                              // hafs style
                                               style: const TextStyle(
 
                                                   color: Colors.red,
                                                   fontFamily: 'hafs2001',
                                                   fontSize: 20)),
                                         ), SizedBox(width: 10,)
+
+                                        // text from
                                       , Container(
                                           height: 40,
                                           width: 40,
