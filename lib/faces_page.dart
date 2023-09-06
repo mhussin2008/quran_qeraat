@@ -18,6 +18,7 @@ class _facesPageState extends State<facesPage> {
   @override
   Widget build(BuildContext context) {
     var t='أوجه الآية  ${widget.aya}  من سورة '+ arabicName[widget.surah]['name'];
+    String aya_hafs=arabic.firstWhere((element) => element['sura_no']==widget.surah+1 && element['aya_no']==widget.aya)['aya_text'];
     return Scaffold(
       appBar: AppBar(
 
@@ -57,10 +58,10 @@ class _facesPageState extends State<facesPage> {
                                   children: [
                                     Text(
                                       ////
-                                      // e['text'],
-                                       arabic.firstWhere((element) => element['sura_no']==widget.surah+1 && element['aya_no']==widget.aya)['aya_text']
+                                    (e['text']=='full')?aya_hafs:e['text'],
+                                      // arabic.firstWhere((element) => element['sura_no']==widget.surah+1 && element['aya_no']==widget.aya)['aya_text'],
                                       //////
-                                  ,
+
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
