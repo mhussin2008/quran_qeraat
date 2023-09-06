@@ -29,7 +29,7 @@ Future readJson() async{
   final data2 = json.decode(response2);
   final data3 = json.decode(response3);
   arabic = data1['quran'];
-  malayalam = data1['malayalam'];
+  //malayalam = data1['malayalam'];
   faces=data2['faces'];
   pages=data3['pages'];
   //dev.log(faces[0]['rawy'].toString());
